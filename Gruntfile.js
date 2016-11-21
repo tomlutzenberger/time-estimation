@@ -38,13 +38,13 @@ module.exports = function (grunt) {
       },
       target: {
         files: {
-          'main.min.js': 'main.js'
+          'js/main.min.js': 'js/main.js'
         }
       }
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'main.js']
+      all: ['Gruntfile.js', 'js/main.js']
     }
   });
 
