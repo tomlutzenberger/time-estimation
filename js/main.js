@@ -12,22 +12,13 @@
 
 /*globals $,document,console*/
 
-function isNumeric(value) {
-
-  'use strict';
-
-  return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-
-
 function isValidValue(value) {
 
   'use strict';
 
   var isValid = false;
 
-  if (isNumeric(value) && value > 0) {
+  if (value > 0) {
     isValid = true;
 
   } else {
@@ -40,21 +31,38 @@ function isValidValue(value) {
 
 
 
+function isFormComplete() {
+
+  'use strict';
+
+  if ($('.te-n').val() !== '' && $('.te-o').val() !== '' && $('.te-p').val() !== '') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
 $(document).ready(function () {
 
   'use strict';
 
   $('.te').on('change', function () {
-    var
-      neutral = ($('.te-n').val() - 0),
-      optimistic = ($('.te-o').val() - 0),
-      pessimistic = ($('.te-p').val() - 0),
-      result = null;
+    if (isFormComplete()) {
+      var
+        neutral = parseFloat($('.te-n').val()),
+        optimistic = parseFloat($('.te-o').val()),
+        pessimistic = parseFloat($('.te-p').val()),
+        result = null;
 
-    if (isValidValue(optimistic) && isValidValue(neutral) && isValidValue(pessimistic)) {
-      result = (optimistic + (4 * neutral) + pessimistic) / 6;
+      if (isValidValue(optimistic) && isValidValue(neutral) && isValidValue(pessimistic)) {
+        result = (optimistic + (4 * neutral) + pessimistic) / 6;
+      }
+
+      $('.result').text(result.toFixed(2));
+    } else {
+      $('.result').text('');
     }
-
-    $('.result').text(result);
   });
 });

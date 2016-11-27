@@ -14,29 +14,28 @@ html(lang='en')
 
     main.container
       .row
-        .col-xs-12
+        .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
 
-          form
+          form.jumbotron
             .row
-              .col-xs-2
-                h2 Task 1
-              .col-xs-2
+              .col-xs-8.col-xs-offset-2.col-sm-4
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Optimistic
-                  input.form-control.te.te-o(type='number' id='exampleInputEmail1' placeholder='')
-              .col-xs-2
+                  label.hidden(for='optimistic') Optimistic
+                  input.form-control.te.te-o(type='number' id='optimistic' min='0' placeholder='Optimistic')
+              .col-xs-8.col-xs-offset-2.col-sm-4
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Neutral
-                  input.form-control.te.te-n(type='number' id='exampleInputEmail1' placeholder='')
-              .col-xs-2
+                  label.hidden(for='neutral') Neutral
+                  input.form-control.te.te-n(type='number' id='neutral' min='0' placeholder='Neutral')
+              .col-xs-8.col-xs-offset-2.col-sm-4
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Pessimistic
-                  input.form-control.te.te-p(type='number' id='exampleInputEmail1' placeholder='')
+                  label.hidden(for='pessimistic') Pessimistic
+                  input.form-control.te.te-p(type='number' id='pessimistic' min='0' placeholder='Pessimistic')
 
-
-              .col-xs-2
-                h3 Result
-                .result
+            .row
+              .col-xs-6.text-right
+                h3 Result =
+              .col-xs-6
+                .result.h3.text-primary
 
 
     script(src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous')
