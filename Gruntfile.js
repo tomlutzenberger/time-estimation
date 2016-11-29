@@ -33,6 +33,7 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
+        preserveComments: '/\/\*\!.*/',
         quoteStyle: 1,
         screwIE8: true
       },
