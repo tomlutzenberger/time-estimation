@@ -5,34 +5,121 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
 
-    title= 'time estimation'
+    title= 'Time Estimation'
+    meta(name='description' content='Calculate your tasks with PERT')
+    meta(name='robots' content='index,follow,noodp')
+
+    meta(property='og:url' content='https://tomlutzenberger.github.io/time-estimation/')
+    meta(property='og:type' content='website')
+    meta(property='og:title' content='Time Estimation')
+    meta(property='og:description' content='Calculate your tasks with PERT')
+    meta(property='og:site_name' content='Time Estimation')
+    meta(property='og:locale' content='en_US')
+
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet')
+    noscript
+      link(href='https://use.fontawesome.com/62e8ca775a.css' rel='stylesheet')
+
+    style
+      != 'footer { padding: 10px 0; }'
+      != '.btn-facebook { background: #3b5998; border: 1px solid #3b5998; color: #fff; }'
+      != '.btn-facebook:hover, .btn-facebook:active, .btn-facebook:focus { background: #fff; color: #3b5998; }'
+      != '.btn-twitter { background: #1da1f2; border: 1px solid #1da1f2; color: #fff; }'
+      != '.btn-twitter:hover, .btn-twitter:active, .btn-twitter:focus { background: #fff; color: #1da1f2; }'
+      != '.btn-github { background: #333; border: 1px solid #333; color: #fff; }'
+      != '.btn-github:hover, .btn-github:active, .btn-github:focus { background: #fff; color: #333; }'
   body
 
     header.text-center
-      h1 time estimation
+      h1 Time Estimation
+        sup
+          != '&nbsp;'
+          small.label.label-warning BETA
+      p
+        small Calculate your tasks with PERT
 
     main.container
       .row
-        .col-xs-12
+        .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
 
-          form
+          form.jumbotron
             .row
-              .col-xs-2
-                h2 Task 1
-              .col-xs-2
+              .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-0
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Optimistic
-                  input.form-control.te-o(type='number' id='exampleInputEmail1' placeholder='')
-              .col-xs-2
+                  label.hidden(for='optimistic') Optimistic
+                  input.form-control.te.te-o(type='number' id='optimistic' min='0' placeholder='Optimistic')
+              .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-0
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Neutral
-                  input.form-control.te-n(type='number' id='exampleInputEmail1' placeholder='')
-              .col-xs-2
+                  label.hidden(for='neutral') Neutral
+                  input.form-control.te.te-n(type='number' id='neutral' min='0' placeholder='Neutral')
+              .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-0
                 .form-group.form-group-lg
-                  label(for='exampleInputEmail1') Pessimistic
-                  input.form-control.te-p(type='number' id='exampleInputEmail1' placeholder='')
+                  label.hidden(for='pessimistic') Pessimistic
+                  input.form-control.te.te-p(type='number' id='pessimistic' min='0' placeholder='Pessimistic')
 
+            .row
+              .col-xs-6.col-sm-3.text-right
+                h3 µ =
+              .col-xs-6.col-sm-3
+                .result-mu.h3.text-primary
+              .col-xs-6.col-sm-3.text-right
+                h3 σ =
+              .col-xs-6.col-sm-3
+                .result-sigma.h3.text-primary
+
+          .col-xs-12
+            h2 Description
+            blockquote "Program Evaluation and Review Technique (PERT) offers an effective way to convert estimates into probability distributions suitable for the business team and for the managers."
+              footer
+                a(href='https://codingjourneyman.com/2014/10/06/the-clean-coder-estimation/') Julien Fiaffé at codingjourneyman.com
+            p
+              strong O : Optimistic Estimate.
+              br
+              = 'Everything goes as planned, nothing as come into the way.'
+            p
+              strong N : Nominal Estimate.
+              br
+              = 'The value with the highest probability.'
+            p
+              strong P : Pessimistic Estimate.
+              br
+              = 'Everything goes wrong, very low percentage of chance to append.'
+            p With these 3 values it’s possible to describe the probability distribution of the task with the following formula:
+            p
+              strong
+                pre µ = (O + 4N + P) / 6
+            p µ (mu) gives us the expected duration of the task. But this is just an average based on some coefficients and cannot be used as a deadline, it is a hint. Moreover the pessimistic estimate high value increase this average.
+            p
+              strong
+                pre σ = (P – O) / 6
+            p In this second formula, σ (sigma) represents the standard deviation of the task. It is a measure to specify how uncertain the task is.
+              strong The higher this value is the higher the risk is.
+
+    .container
+      .row
+        .col-xs-12
+          hr
+          footer.text-center
+            p
+              a.btn.btn-sm.btn-facebook(href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftomlutzenberger.github.io%2Ftime-estimation%2F' target='_blank')
+                i.fa.fa-fw.fa-lg.fa-facebook
+                != '&nbsp;Share'
+
+              != '&nbsp;'
+
+              a.btn.btn-sm.btn-twitter(href='https://twitter.com/share?text=Time%20estimation%20-%20Calculate%20your%20tasks%20with%20PERT&url=https%3A%2F%2Ftomlutzenberger.github.io%2Ftime-estimation%2F&via=t0mlutzenberger&hashtags=time%2Cestimation%2Ccalculator' target='_blank')
+                i.fa.fa-fw.fa-lg.fa-twitter
+                != '&nbsp;Tweet'
+
+              != '&nbsp;'
+
+              a.btn.btn-sm.btn-github(href='https://github.com/tomlutzenberger/time-estimation' title='Contribute on GitHub' target='_blank')
+                i.fa.fa-fw.fa-lg.fa-github
+                != '&nbsp;Contribute'
+
+            p
+              != '2016 by Tom Lutzenberger'
 
     script(src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous')
+    script(src='https://use.fontawesome.com/35bd65811d.js')
     script(src='js/main.min.js')
