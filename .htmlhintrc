@@ -1,7 +1,3 @@
-/*
- * HTMLHint Rules
- */
-
 {
   "attr-lowercase": true,
   "attr-no-duplication": true,
