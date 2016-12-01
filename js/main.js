@@ -61,9 +61,11 @@ function updateUrlParams() {
 
   'use strict';
 
-  var values = getValues();
+  var
+    values = getValues(),
+    urlParams = '?o=' + values.o + '&n=' + values.n + '&p=' + values.p;
 
-  location.search = '?o=' + values.o + '&n=' + values.n + '&p=' + values.p;
+  history.pushState(null, null, urlParams);
 }
 
 
