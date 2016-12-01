@@ -1,5 +1,5 @@
 /*!
- * Time Estimation v0.1
+ * Time Estimation v0.2
  * Calculate your tasks with PERT
  *
  * Copyright (c) 2016 - Tom Lutzenberger (lutzenbergerthomas at gmail dot com)
@@ -57,6 +57,50 @@ function getValues() {
 
 
 
+function updateUrlParams() {
+
+  'use strict';
+
+  var values = getValues();
+
+  location.search = '?o=' + values.o + '&n=' + values.n + '&p=' + values.p;
+}
+
+
+
+function getUrlParams() {
+
+  'use strict';
+
+  var
+    regex = new RegExp('\\?(.*)', 'i'),
+    urlParams = regex.exec(location.search),
+    params = [],
+    p = null,
+    param = null;
+
+  if (urlParams !== null && urlParams.length > 1) {
+    params = urlParams[1].split('&');
+
+    for (p in params) {
+      if (params.hasOwnProperty(p)) {
+        param = params[p].split('=');
+        $('.te-' + param[0].toLowerCase()).val(param[1]);
+      }
+    }
+
+    return true;
+
+  } else {
+
+    console.info('No URL parameters to read');
+    return false;
+
+  }
+}
+
+
+
 function calculateResult() {
 
   'use strict';
@@ -91,14 +135,18 @@ $(document).ready(function () {
 
   'use strict';
 
+  if (getUrlParams()) {
+    calculateResult();
+  }
+
   $('.te').on('change', function () {
 
     if (isFormComplete()) {
       calculateResult();
+      updateUrlParams();
 
     } else {
       resetResult();
     }
-
   });
 });
