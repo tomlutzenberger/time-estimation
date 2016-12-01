@@ -44,29 +44,61 @@ function isFormComplete() {
 
 
 
+function getValues() {
+
+  'use strict';
+
+  return {
+    n: parseFloat($('.te-n').val()),
+    o: parseFloat($('.te-o').val()),
+    p: parseFloat($('.te-p').val())
+  };
+}
+
+
+
+function calculateResult() {
+
+  'use strict';
+
+  var
+    values = getValues(),
+    resultMu = null,
+    resultSigma = null;
+
+  if (isValidValue(values.o) && isValidValue(values.n) && isValidValue(values.p)) {
+    resultMu = (values.o + (4 * values.n) + values.p) / 6;
+    resultSigma = (values.p - values.o) / 6;
+  }
+
+  $('.result-mu').text(resultMu.toFixed(2));
+  $('.result-sigma').text(resultSigma.toFixed(2));
+}
+
+
+
+function resetResult() {
+
+  'use strict';
+
+  $('.result-mu').text('');
+  $('.result-sigma').text('');
+}
+
+
+
 $(document).ready(function () {
 
   'use strict';
 
   $('.te').on('change', function () {
+
     if (isFormComplete()) {
-      var
-        neutral = parseFloat($('.te-n').val()),
-        optimistic = parseFloat($('.te-o').val()),
-        pessimistic = parseFloat($('.te-p').val()),
-        resultMu = null,
-        resultSigma = null;
+      calculateResult();
 
-      if (isValidValue(optimistic) && isValidValue(neutral) && isValidValue(pessimistic)) {
-        resultMu = (optimistic + (4 * neutral) + pessimistic) / 6;
-        resultSigma = (pessimistic - optimistic) / 6;
-      }
-
-      $('.result-mu').text(resultMu.toFixed(2));
-      $('.result-sigma').text(resultSigma.toFixed(2));
     } else {
-      $('.result-mu').text('');
-      $('.result-sigma').text('');
+      resetResult();
     }
+
   });
 });
