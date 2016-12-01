@@ -68,32 +68,39 @@ html(lang='en')
                 .result-sigma.h3.text-primary
 
           .col-xs-12
-            h2 Description
-            blockquote "Program Evaluation and Review Technique (PERT) offers an effective way to convert estimates into probability distributions suitable for the business team and for the managers."
-              footer
-                a(href='https://codingjourneyman.com/2014/10/06/the-clean-coder-estimation/') Julien Fiaffé at codingjourneyman.com
             p
-              strong O : Optimistic Estimate.
-              br
-              = 'Everything goes as planned, nothing as come into the way.'
-            p
-              strong N : Nominal Estimate.
-              br
-              = 'The value with the highest probability.'
-            p
-              strong P : Pessimistic Estimate.
-              br
-              = 'Everything goes wrong, very low percentage of chance to append.'
-            p With these 3 values it’s possible to describe the probability distribution of the task with the following formula:
-            p
-              strong
-                pre µ = (O + 4N + P) / 6
-            p µ (mu) gives us the expected duration of the task. But this is just an average based on some coefficients and cannot be used as a deadline, it is a hint. Moreover the pessimistic estimate high value increase this average.
-            p
-              strong
-                pre σ = (P – O) / 6
-            p In this second formula, σ (sigma) represents the standard deviation of the task. It is a measure to specify how uncertain the task is.
-              strong The higher this value is the higher the risk is.
+              button.btn.btn-default(type='button' data-toggle='collapse' data-target='#collapseDescription' aria-expanded='false' aria-controls='collapseDescription')
+                span.text-info
+                  i.fa.fa-fw.fa-info
+                  = 'Show Description'
+
+            .collapse#collapseDescription
+              .well
+                blockquote "Program Evaluation and Review Technique (PERT) offers an effective way to convert estimates into probability distributions suitable for the business team and for the managers."
+                  footer
+                    a(href='https://codingjourneyman.com/2014/10/06/the-clean-coder-estimation/') Julien Fiaffé at codingjourneyman.com
+                p
+                  strong O : Optimistic Estimate.
+                  br
+                  = 'Everything goes as planned, nothing as come into the way.'
+                p
+                  strong N : Nominal Estimate.
+                  br
+                  = 'The value with the highest probability.'
+                p
+                  strong P : Pessimistic Estimate.
+                  br
+                  = 'Everything goes wrong, very low percentage of chance to append.'
+                p With these 3 values it’s possible to describe the probability distribution of the task with the following formula:
+                p
+                  strong
+                    pre µ = (O + 4N + P) / 6
+                p µ (mu) gives us the expected duration of the task. But this is just an average based on some coefficients and cannot be used as a deadline, it is a hint. Moreover the pessimistic estimate high value increase this average.
+                p
+                  strong
+                    pre σ = (P – O) / 6
+                p In this second formula, σ (sigma) represents the standard deviation of the task. It is a measure to specify how uncertain the task is.
+                  strong The higher this value is the higher the risk is.
 
     .container
       .row
@@ -121,5 +128,6 @@ html(lang='en')
               != '2016 by Tom Lutzenberger'
 
     script(src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous')
     script(src='https://use.fontawesome.com/35bd65811d.js')
     script(src='js/main.min.js')
