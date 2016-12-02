@@ -22,7 +22,7 @@ function isValidValue(value) {
     isValid = true;
 
   } else {
-    console.error('Given value "' + value + '" is not a valid number.');
+    console.warn('Given value "' + value + '" is not a valid number.');
     isValid = false;
   }
 
@@ -115,10 +115,13 @@ function calculateResult() {
   if (isValidValue(values.o) && isValidValue(values.n) && isValidValue(values.p)) {
     resultMu = (values.o + (4 * values.n) + values.p) / 6;
     resultSigma = (values.p - values.o) / 6;
-  }
 
-  $('.result-mu').text(resultMu.toFixed(2));
-  $('.result-sigma').text(resultSigma.toFixed(2));
+    $('.result-mu').text(resultMu.toFixed(2));
+    $('.result-sigma').text(resultSigma.toFixed(2));
+
+  } else {
+    resetResult();
+  }
 }
 
 
