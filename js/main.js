@@ -1,5 +1,5 @@
 /*!
- * Time Estimation v0.2
+ * Time Estimation v0.3
  * Calculate your tasks with PERT
  *
  * Copyright (c) 2016 - Tom Lutzenberger (lutzenbergerthomas at gmail dot com)
