@@ -49,6 +49,7 @@ function getValues() {
   'use strict';
 
   return {
+    title: $('.te-title').val(),
     n: parseFloat($('.te-n').val()),
     o: parseFloat($('.te-o').val()),
     p: parseFloat($('.te-p').val())
@@ -63,7 +64,7 @@ function updateUrlParams() {
 
   var
     values = getValues(),
-    urlParams = '?o=' + values.o + '&n=' + values.n + '&p=' + values.p;
+    urlParams = '?title=' + encodeURIComponent(values.title) + '&o=' + values.o + '&n=' + values.n + '&p=' + values.p;
 
   history.pushState(null, null, urlParams);
 }
@@ -87,7 +88,8 @@ function getUrlParams() {
     for (p in params) {
       if (params.hasOwnProperty(p)) {
         param = params[p].split('=');
-        $('.te-' + param[0].toLowerCase()).val(param[1]);
+
+        $('.te-' + param[0].toLowerCase()).val(decodeURIComponent(param[1]));
       }
     }
 
