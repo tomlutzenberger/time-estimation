@@ -105,6 +105,16 @@ function getUrlParams() {
 
 
 
+function resetResult() {
+
+    'use strict';
+
+    $('.result-mu').text('');
+    $('.result-sigma').text('');
+}
+
+
+
 function calculateResult() {
 
     'use strict';
@@ -124,16 +134,6 @@ function calculateResult() {
     } else {
         resetResult();
     }
-}
-
-
-
-function resetResult() {
-
-    'use strict';
-
-    $('.result-mu').text('');
-    $('.result-sigma').text('');
 }
 
 
