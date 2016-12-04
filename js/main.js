@@ -14,146 +14,146 @@
 
 function isValidValue(value) {
 
-  'use strict';
+    'use strict';
 
-  var isValid = false;
+    var isValid = false;
 
-  if (value > 0) {
-    isValid = true;
+    if (value > 0) {
+        isValid = true;
 
-  } else {
-    console.warn('Given value "' + value + '" is not a valid number.');
-    isValid = false;
-  }
+    } else {
+        console.warn('Given value "' + value + '" is not a valid number.');
+        isValid = false;
+    }
 
-  return isValid;
+    return isValid;
 }
 
 
 
 function isFormComplete() {
 
-  'use strict';
+    'use strict';
 
-  if ($('.te-n').val() !== '' && $('.te-o').val() !== '' && $('.te-p').val() !== '') {
-    return true;
-  } else {
-    return false;
-  }
+    if ($('.te-n').val() !== '' && $('.te-o').val() !== '' && $('.te-p').val() !== '') {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
 
 function getValues() {
 
-  'use strict';
+    'use strict';
 
-  return {
-    title: $('.te-title').val(),
-    n: parseFloat($('.te-n').val()),
-    o: parseFloat($('.te-o').val()),
-    p: parseFloat($('.te-p').val())
-  };
+    return {
+        title: $('.te-title').val(),
+        n: parseFloat($('.te-n').val()),
+        o: parseFloat($('.te-o').val()),
+        p: parseFloat($('.te-p').val())
+    };
 }
 
 
 
 function updateUrlParams() {
 
-  'use strict';
+    'use strict';
 
-  var
-    values = getValues(),
-    urlParams = '?title=' + encodeURIComponent(values.title) + '&o=' + values.o + '&n=' + values.n + '&p=' + values.p;
+    var
+        values = getValues(),
+        urlParams = '?title=' + encodeURIComponent(values.title) + '&o=' + values.o + '&n=' + values.n + '&p=' + values.p;
 
-  history.pushState(null, null, urlParams);
+    history.pushState(null, null, urlParams);
 }
 
 
 
 function getUrlParams() {
 
-  'use strict';
+    'use strict';
 
-  var
-    regex = new RegExp('\\?(.*)', 'i'),
-    urlParams = regex.exec(location.search),
-    params = [],
-    p = null,
-    param = null;
+    var
+        regex = new RegExp('\\?(.*)', 'i'),
+        urlParams = regex.exec(location.search),
+        params = [],
+        p = null,
+        param = null;
 
-  if (urlParams !== null && urlParams.length > 1) {
-    params = urlParams[1].split('&');
+    if (urlParams !== null && urlParams.length > 1) {
+        params = urlParams[1].split('&');
 
-    for (p in params) {
-      if (params.hasOwnProperty(p)) {
-        param = params[p].split('=');
+        for (p in params) {
+            if (params.hasOwnProperty(p)) {
+                param = params[p].split('=');
 
-        $('.te-' + param[0].toLowerCase()).val(decodeURIComponent(param[1]));
-      }
+                $('.te-' + param[0].toLowerCase()).val(decodeURIComponent(param[1]));
+            }
+        }
+
+        return true;
+
+    } else {
+
+        console.info('No URL parameters to read');
+        return false;
+
     }
-
-    return true;
-
-  } else {
-
-    console.info('No URL parameters to read');
-    return false;
-
-  }
 }
 
 
 
 function calculateResult() {
 
-  'use strict';
+    'use strict';
 
-  var
-    values = getValues(),
-    resultMu = null,
-    resultSigma = null;
+    var
+        values = getValues(),
+        resultMu = null,
+        resultSigma = null;
 
-  if (isValidValue(values.o) && isValidValue(values.n) && isValidValue(values.p)) {
-    resultMu = (values.o + (4 * values.n) + values.p) / 6;
-    resultSigma = (values.p - values.o) / 6;
+    if (isValidValue(values.o) && isValidValue(values.n) && isValidValue(values.p)) {
+        resultMu = (values.o + (4 * values.n) + values.p) / 6;
+        resultSigma = (values.p - values.o) / 6;
 
-    $('.result-mu').text(resultMu.toFixed(2));
-    $('.result-sigma').text(resultSigma.toFixed(2));
+        $('.result-mu').text(resultMu.toFixed(2));
+        $('.result-sigma').text(resultSigma.toFixed(2));
 
-  } else {
-    resetResult();
-  }
+    } else {
+        resetResult();
+    }
 }
 
 
 
 function resetResult() {
 
-  'use strict';
+    'use strict';
 
-  $('.result-mu').text('');
-  $('.result-sigma').text('');
+    $('.result-mu').text('');
+    $('.result-sigma').text('');
 }
 
 
 
 $(document).ready(function () {
 
-  'use strict';
+    'use strict';
 
-  if (getUrlParams()) {
-    calculateResult();
-  }
-
-  $('.te').on('change', function () {
-
-    if (isFormComplete()) {
-      calculateResult();
-      updateUrlParams();
-
-    } else {
-      resetResult();
+    if (getUrlParams()) {
+        calculateResult();
     }
-  });
+
+    $('.te').on('change', function () {
+
+        if (isFormComplete()) {
+            calculateResult();
+            updateUrlParams();
+
+        } else {
+            resetResult();
+        }
+    });
 });
