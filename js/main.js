@@ -118,7 +118,11 @@ TimeEstimation.prototype = {
                 if (params.hasOwnProperty(p)) {
 
                     param = params[p].split('=');
-                    this[param[0].toLowerCase()] = decodeURIComponent(param[1]);
+                    if(param[0].toLowerCase() !== 'title') {
+                        this[param[0].toLowerCase()] = parseFloat(decodeURIComponent(param[1]));
+                    } else {
+                        this[param[0].toLowerCase()] = decodeURIComponent(param[1]);
+                    }
                 }
             }
 
