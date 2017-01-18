@@ -185,6 +185,7 @@ $(document).ready(function () {
 
     if (te.getUrlParams()) {
         te.calculateResult();
+        te.setResult();
     }
 
     $('.te').on('change', function () {
