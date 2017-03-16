@@ -2,7 +2,7 @@
  * Time Estimation v0.4
  * Calculate your tasks with PERT
  *
- * Copyright (c) 2016 - Tom Lutzenberger (lutzenbergerthomas at gmail dot com)
+ * Copyright (c) 2017 - Tom Lutzenberger (lutzenbergerthomas at gmail dot com)
  * https://github.com/tomlutzenberger/time-estimation
  *
  * Released under the MIT license
